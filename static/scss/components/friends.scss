@@ -1,0 +1,58 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+.extras {
+  border-radius: rem(4);
+  @include shadowDarkLight;
+  align-self: self-start;
+  position: sticky;
+  top: rem(88);
+  &__friends {
+    .title {
+      margin-bottom: rem(16);
+      span {
+        color: $ColorLight;
+        font-size: $f-md;
+      }
+      small.count {
+        color: $ColorGrayLight;
+        margin-left: rem(6);
+      }
+    }
+    &__list {
+      li {
+        &:not(:last-child) {
+          margin-bottom: rem(16);
+        }
+
+        a {
+          .user-img {
+            width: rem(42);
+            height: rem(42);
+            overflow: hidden;
+            border-radius: 50%;
+            &.online {
+              border: 3px solid $ColorGreen;
+            }
+            &.offline {
+              border: 3px solid $ColorGray;
+            }
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .name {
+            display: block;
+            font-size: $f-sm;
+            color: $ColorLight;
+          }
+          .username {
+            font-size: $f-xs;
+            color: $ColorGray;
+          }
+        }
+      }
+    }
+  }
+}

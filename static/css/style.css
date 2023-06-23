@@ -1,0 +1,1753 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600&display=swap");
+html {
+  font-size: 100%;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  background-color: #141414;
+  color: #000;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+
+.wrapper {
+  max-width: 75rem;
+  margin: 0 auto;
+}
+@media (max-width: 74.9375em) {
+  .wrapper {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.flex {
+  display: flex;
+}
+.flex-d-c {
+  flex-direction: column;
+}
+.flex-g {
+  flex-grow: 1;
+}
+.flex-jc-c {
+  justify-content: center;
+}
+.flex-jc-sb {
+  justify-content: space-between;
+}
+.flex-jc-ar {
+  justify-content: space-around;
+}
+.flex-jc-se {
+  justify-content: space-evenly;
+}
+.flex-jc-s {
+  justify-content: start;
+}
+.flex-jc-e {
+  justify-content: end;
+}
+.flex-ai-c {
+  align-items: center;
+}
+.flex-ai-s {
+  align-items: start;
+}
+.flex-ai-e {
+  align-items: end;
+}
+
+.br-6 {
+  border-radius: 0.375rem;
+}
+
+.br-22 {
+  border-radius: 1.375rem;
+}
+
+.p-12 {
+  padding: 0.75rem;
+}
+
+.pt-12 {
+  padding-top: 0.75rem;
+}
+
+.pb-12 {
+  padding-bottom: 0.75rem;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+svg {
+  width: 1.125rem;
+  height: 1.125rem;
+  stroke-width: 1px;
+  fill: #fff;
+}
+
+.container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2.5fr 1fr;
+  gap: 2rem;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.container-e {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr;
+  gap: 2rem;
+  padding: 1rem 0;
+  position: relative;
+}
+
+.container-n {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90vh;
+}
+
+.g-12 {
+  gap: 0.75rem;
+}
+
+.g-8 {
+  gap: 0.5rem;
+}
+
+.g-16 {
+  gap: 1rem;
+}
+
+ul,
+li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+a:active {
+  color: #000;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    visibility: hidden;
+  }
+  100% {
+    opacity: 1;
+    visibility: visible;
+  }
+}
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+.navbar {
+  background-color: #000;
+  padding: 0.875rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 10000;
+}
+.navbar__logo a h1 {
+  color: #ffff00;
+  font-size: 1.5rem;
+}
+.navbar__links li:not(:last-child) {
+  margin-right: 1rem;
+}
+.navbar__links li a {
+  display: block;
+}
+.navbar__links li a svg {
+  width: 1.375rem;
+  height: 1.25rem;
+}
+.navbar__links li.notification {
+  position: relative;
+}
+.navbar__links li.notification .notify {
+  position: absolute;
+  background-color: red;
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  border-radius: 50%;
+  top: -2px;
+  right: 0;
+}
+.navbar__links li.user a {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.75rem;
+}
+.navbar__links li.user a .user-img {
+  width: 2.25rem;
+  height: 2.25rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.navbar__links li.user a .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.navbar__links li.user a span {
+  display: block;
+  color: #fff;
+}
+.navbar__links li.user a span.username {
+  color: #ffff00;
+  font-size: 0.875rem;
+}
+
+.sidebar {
+  background-color: #0b0b0b;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.0392156863);
+  align-self: self-start;
+  position: sticky;
+  top: 5.5rem;
+}
+.sidebar__links .link:not(:last-child) {
+  margin-bottom: 0.75rem;
+}
+.sidebar__links .link.active a {
+  background-color: #141414;
+  border-left: 1px solid #ffff00;
+}
+.sidebar__links .link.active a svg {
+  fill: #fff;
+}
+.sidebar__links .link.active a span {
+  color: #fff;
+}
+.sidebar__links .link a {
+  border-radius: 0.25rem;
+  display: block;
+  padding: 1rem;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  gap: 1rem;
+  transition: 300ms ease-in-out;
+}
+.sidebar__links .link a svg {
+  fill: gray;
+}
+.sidebar__links .link a span {
+  color: gray;
+}
+.sidebar__links .link a:hover {
+  background-color: #141414;
+  border-left: 1px solid #ffff00;
+}
+.sidebar__links .link a:hover svg {
+  fill: #fff;
+}
+.sidebar__links .link a:hover span {
+  color: #fff;
+}
+.sidebar .logout_btn a {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  padding: 1rem;
+  gap: 1rem;
+}
+.sidebar .logout_btn a svg {
+  stroke: #fff;
+  fill: #000;
+}
+.sidebar .logout_btn a span {
+  color: #3232c0;
+  text-decoration: underline;
+  font-size: 0.875rem;
+}
+
+.room__card {
+  background-color: #0b0b0b;
+  color: #fff;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: 0.75rem;
+  border-radius: 0.75rem;
+  gap: 0.75rem;
+}
+.room__card:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.room__card-img {
+  border-radius: 0.75rem;
+  overflow: hidden;
+}
+.room__card-img img {
+  width: 100%;
+  height: 100%;
+}
+.room__card-content {
+  display: grid;
+  gap: 0.75rem;
+}
+.room__card-content .room-head a.update_room {
+  width: 1.625rem;
+  height: 1.625rem;
+  background: #141414;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.room__card-content .room-head a.update_room svg {
+  fill: none;
+  stroke: #fff;
+  width: 1rem;
+  height: 1rem;
+}
+.room__card-content .room-details span {
+  font-size: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.375rem;
+  color: green;
+}
+.room__card-content .room-details span svg {
+  width: 0.75rem;
+  height: 0.75rem;
+  fill: gray;
+}
+.room__card-content .room-details span.room-members span {
+  color: gray;
+}
+.room__card-content .room-details span.room-online span {
+  color: gray;
+}
+.room__card-content .room-details span.room-private {
+  color: red;
+}
+.room__card-content .room-details span.category a {
+  color: #000;
+  background-color: #939393;
+  padding: 0 0.5rem;
+  border-radius: 0.25rem;
+}
+.room__card-content .room-footer .owner {
+  display: flex;
+  align-items: start;
+  justify-content: start;
+  gap: 0.5rem;
+}
+.room__card-content .room-footer .owner .owner-img {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.room__card-content .room-footer .owner .owner-img img {
+  width: 100%;
+  height: 100%;
+}
+.room__card-content .room-footer .owner .owner-name {
+  font-size: 0.75rem;
+  text-align: left;
+}
+.room__card-content .room-footer .owner .owner-name span {
+  color: gray;
+}
+.room__card-content .room-footer .owner .owner-name .online {
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  background-color: green;
+  border-radius: 50%;
+}
+.room__card-content .room-footer .owner .owner-name .offline {
+  width: 0.5rem;
+  height: 0.5rem;
+  display: block;
+  background-color: gray;
+  border-radius: 50%;
+}
+.room__card-content .room-footer .owner .last-online {
+  font-size: 0.5rem;
+  color: #939393;
+}
+.room__card-content .room-footer .join_room {
+  background-color: #ffff00;
+  color: #000;
+  padding: 0.25rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.extras {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.0392156863);
+  align-self: self-start;
+  position: sticky;
+  top: 5.5rem;
+}
+.extras__topics .title {
+  margin-bottom: 1rem;
+}
+.extras__topics .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+.extras__topics__list li.active a {
+  color: #ffff00;
+}
+.extras__topics__list li.active .count {
+  color: #ffff00;
+}
+.extras__topics__list li:hover a {
+  color: #ffff00;
+}
+.extras__topics__list li:hover .count {
+  color: #ffff00;
+}
+.extras__topics__list li:not(:last-child) {
+  margin-bottom: 1.375rem;
+}
+.extras__topics__list li a {
+  color: gray;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: 300ms ease-in-out;
+}
+.extras__topics__list li .count {
+  color: #939393;
+  background-color: #141414;
+  padding: 0.125rem 0.5rem;
+  border-radius: 0.25rem;
+}
+
+.extras {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.0392156863);
+  align-self: self-start;
+  position: sticky;
+  top: 5.5rem;
+}
+.extras__friends .title {
+  margin-bottom: 1rem;
+}
+.extras__friends .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+.extras__friends .title small.count {
+  color: #939393;
+  margin-left: 0.375rem;
+}
+.extras__friends__list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.extras__friends__list li a .user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.extras__friends__list li a .user-img.online {
+  border: 3px solid green;
+}
+.extras__friends__list li a .user-img.offline {
+  border: 3px solid gray;
+}
+.extras__friends__list li a .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.extras__friends__list li a .name {
+  display: block;
+  font-size: 0.875rem;
+  color: #fff;
+}
+.extras__friends__list li a .username {
+  font-size: 0.75rem;
+  color: gray;
+}
+
+.extras {
+  border-radius: 0.25rem;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.0392156863);
+  align-self: self-start;
+  position: sticky;
+  top: 5.5rem;
+}
+.extras__members .title {
+  margin-bottom: 1rem;
+}
+.extras__members .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+.extras__members .title small.count {
+  color: #939393;
+  margin-left: 0.375rem;
+}
+.extras__members__list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.extras__members__list li a {
+  display: flex;
+}
+.extras__members__list li a .user-img {
+  position: relative;
+  width: 2.625rem;
+  height: 2.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+.extras__members__list li a .user-img.online {
+  border: 3px solid green;
+}
+.extras__members__list li a .user-img.offline {
+  border: 3px solid gray;
+}
+.extras__members__list li a .user-img img {
+  width: 100%;
+  height: 100%;
+}
+.extras__members__list li a .name {
+  display: block;
+  font-size: 0.875rem;
+  color: #fff;
+}
+.extras__members__list li a .username {
+  font-size: 0.75rem;
+  color: gray;
+}
+
+.extras.frd-req {
+  position: relative;
+  top: 0;
+}
+.extras.frd-req .extras__frd-req .title {
+  margin-bottom: 1rem;
+}
+.extras.frd-req .extras__frd-req .title span {
+  color: #fff;
+}
+.extras.frd-req .extras__frd-req .title small.count {
+  color: gray;
+  margin-left: 0.5rem;
+}
+.extras.frd-req .extras__frd-req .notifications_list li {
+  padding: 0.375rem 0;
+}
+.extras.frd-req .extras__frd-req .notifications_list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.extras.frd-req .extras__frd-req .notifications_list li a.user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+  display: block;
+}
+.extras.frd-req .extras__frd-req .notifications_list li a.user-img img {
+  width: 100%;
+  height: 100%;
+}
+.extras.frd-req .extras__frd-req .notifications_list li .name {
+  color: #fff;
+}
+.extras.frd-req .extras__frd-req .notifications_list li .notifi-details p {
+  color: gray;
+  font-size: 0.875rem;
+}
+.extras.frd-req .extras__frd-req .notifications_list li span.i {
+  color: #fff;
+}
+.extras.frd-req .extras__frd-req .notifications_list li .room-details a {
+  color: #ffff00;
+}
+
+button.favorite {
+  width: 1.625rem;
+  height: 1.625rem;
+  cursor: pointer;
+  background: #141414;
+  border-radius: 50%;
+  outline: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button.favorite.added svg {
+  fill: red;
+  stroke: red;
+}
+button.favorite svg {
+  stroke: red;
+  fill: #141414;
+}
+
+button.delete_room {
+  width: 1.625rem;
+  height: 1.625rem;
+  cursor: pointer;
+  background: #141414;
+  border-radius: 50%;
+  outline: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.room_create_btn {
+  padding: 0.75rem 2.875rem;
+  border: none;
+  outline: transparent;
+  background: #ffff00;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button.room_update_btn {
+  padding: 0.75rem 2.875rem;
+  border: none;
+  outline: transparent;
+  background: #ffff00;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button.profile_update_btn {
+  padding: 0.75rem 2.875rem;
+  border: none;
+  outline: transparent;
+  background: #ffff00;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+button.frd_btn {
+  background: transparent;
+  outline: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+button.frd_btn .help-text {
+  position: absolute;
+  top: -1rem;
+  left: auto;
+  font-size: 0.75rem;
+  color: #939393;
+  display: none;
+}
+button.frd_btn:hover .help-text {
+  display: block;
+}
+button.frd_btn.remove-frd svg {
+  width: 1rem;
+  height: 1rem;
+  fill: red;
+}
+button.frd_btn.add-frd svg {
+  width: 1rem;
+  height: 1rem;
+  fill: green;
+}
+
+button.member_btn {
+  background: transparent;
+  outline: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+}
+button.member_btn .help-text {
+  position: absolute;
+  top: -1rem;
+  left: auto;
+  font-size: 0.75rem;
+  color: #939393;
+  display: none;
+}
+button.member_btn:hover .help-text {
+  display: block;
+}
+button.member_btn.remove-member svg {
+  width: 1rem;
+  height: 1rem;
+  fill: #ffff00;
+}
+
+button.submit_chat {
+  border: none;
+  outline: transparent;
+  background-color: #ffff00;
+  padding: 0.75rem;
+  cursor: pointer;
+}
+
+button.change_password_submit_btn {
+  outline: transparent;
+  border: none;
+  background: #ffff00;
+  padding: 0.375rem 1rem;
+  border-radius: 0.25rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.navbar__search-bar form .form-control {
+  padding: 0.625rem 0.75rem;
+  width: 31.25rem;
+  border-radius: 0.25rem;
+  background-color: #141414;
+}
+.navbar__search-bar form .form-control input {
+  border: none;
+  outline: transparent;
+  background: transparent;
+  width: 100%;
+  color: #fff;
+}
+.navbar__search-bar form .form-control button {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+}
+.navbar__search-bar form .form-control button svg {
+  fill: #fff;
+}
+
+.create__room-form form .image_preview {
+  width: 15.625rem;
+  height: 15.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border: 1px solid #fff;
+}
+.create__room-form form .image_preview img {
+  width: 100%;
+  height: 100%;
+}
+.create__room-form form .form-control {
+  margin-bottom: 1rem;
+}
+.create__room-form form .form-control.private {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
+.create__room-form form .form-control.private label {
+  color: #fff;
+}
+.create__room-form form .form-control.private input {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.create__room-form form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  outline: transparent;
+  border-radius: 0.25rem;
+  background: #0b0b0b;
+  color: #fff;
+}
+.create__room-form form .form-control textarea {
+  width: 100%;
+  border: none;
+  outline: transparent;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  background: #0b0b0b;
+  color: #fff;
+}
+
+.settings__update-form form .image_preview {
+  width: 15.625rem;
+  height: 15.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border: 1px solid #fff;
+}
+.settings__update-form form .image_preview img {
+  width: 100%;
+  height: 100%;
+}
+.settings__update-form form .form-control {
+  margin-bottom: 1rem;
+}
+.settings__update-form form .form-control.private {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  gap: 0.5rem;
+}
+.settings__update-form form .form-control.private label {
+  color: #fff;
+}
+.settings__update-form form .form-control.private input {
+  width: 0.875rem;
+  height: 0.875rem;
+}
+.settings__update-form form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  border: none;
+  outline: transparent;
+  border-radius: 0.25rem;
+  background: #0b0b0b;
+  color: #fff;
+}
+.settings__update-form form .form-control textarea {
+  width: 100%;
+  border: none;
+  outline: transparent;
+  border-radius: 0.25rem;
+  padding: 0.75rem;
+  background: #0b0b0b;
+  color: #fff;
+}
+.settings__update-form form .change_password {
+  text-decoration: underline;
+  font-size: 0.875rem;
+  color: #3232c0;
+}
+
+.change-password__content form {
+  margin-top: 0.75rem;
+}
+.change-password__content form .form-control {
+  width: 100%;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.change-password__content form .form-control:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.change-password__content form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.change-password__content form .form-control button.eye {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.change-password__content form .form-control button.eye.showpwd svg.eye-icon {
+  display: block;
+}
+.change-password__content form .form-control button.eye.showpwd svg.eye-cross {
+  display: none;
+}
+.change-password__content form .form-control button.eye svg.eye-cross {
+  display: block;
+}
+.change-password__content form .form-control button.eye svg.eye-icon {
+  display: none;
+}
+
+.forget-password__content form {
+  margin-top: 0.75rem;
+}
+.forget-password__content form .form-control {
+  width: 100%;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.forget-password__content form .form-control:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.forget-password__content form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.forget-password__content form .form-control button.eye {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.forget-password__content form .form-control button.eye.showpwd svg.eye-icon {
+  display: block;
+}
+.forget-password__content form .form-control button.eye.showpwd svg.eye-cross {
+  display: none;
+}
+.forget-password__content form .form-control button.eye svg.eye-cross {
+  display: block;
+}
+.forget-password__content form .form-control button.eye svg.eye-icon {
+  display: none;
+}
+
+.register__content form {
+  margin-top: 0.75rem;
+}
+.register__content form .form-control {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.register__content form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.register__content form .form-control button.eye {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.register__content form .form-control button.eye.showpwd svg.eye-icon {
+  display: block;
+}
+.register__content form .form-control button.eye.showpwd svg.eye-cross {
+  display: none;
+}
+.register__content form .form-control button.eye svg.eye-cross {
+  display: block;
+}
+.register__content form .form-control button.eye svg.eye-icon {
+  display: none;
+}
+.register__content form small.error {
+  color: red;
+  display: block;
+  margin: 1rem 0;
+}
+.register__content form .form-footer p {
+  color: #fff;
+  font-size: 0.875rem;
+}
+.register__content form .form-footer p a {
+  margin-left: 0.375rem;
+  color: #3232c0;
+  text-decoration: underline;
+}
+
+.login__content form {
+  margin-top: 0.75rem;
+  position: relative;
+}
+.login__content form small.error {
+  color: red;
+  position: absolute;
+  top: -1.375rem;
+}
+.login__content form .form-control {
+  width: 100%;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.login__content form .form-control:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.login__content form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.login__content form .form-control button.eye {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login__content form .form-control button.eye.showpwd svg.eye-icon {
+  display: block;
+}
+.login__content form .form-control button.eye.showpwd svg.eye-cross {
+  display: none;
+}
+.login__content form .form-control button.eye svg.eye-cross {
+  display: block;
+}
+.login__content form .form-control button.eye svg.eye-icon {
+  display: none;
+}
+.login__content form .form-footer p {
+  color: #fff;
+  font-size: 0.875rem;
+}
+.login__content form .form-footer p a {
+  margin-left: 0.375rem;
+  color: #3232c0;
+  text-decoration: underline;
+}
+
+.new-password__content form {
+  margin-top: 0.75rem;
+}
+.new-password__content form .form-control {
+  width: 100%;
+  overflow: hidden;
+  background-color: #141414;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.new-password__content form .form-control:not(:last-child) {
+  margin-bottom: 1rem;
+}
+.new-password__content form .form-control input {
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: none;
+  background: transparent;
+  color: #fff;
+}
+.new-password__content form .form-control button.eye {
+  background: transparent;
+  outline: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.new-password__content form .form-control button.eye.showpwd svg.eye-icon {
+  display: block;
+}
+.new-password__content form .form-control button.eye.showpwd svg.eye-cross {
+  display: none;
+}
+.new-password__content form .form-control button.eye svg.eye-cross {
+  display: block;
+}
+.new-password__content form .form-control button.eye svg.eye-icon {
+  display: none;
+}
+
+#home-page .content .create_room {
+  margin-bottom: 1.125rem;
+}
+#home-page .content .create_room .room__name {
+  color: #fff;
+}
+#home-page .content .create_room .room__count {
+  color: gray;
+}
+#home-page .content .create_room .create-room-btn a {
+  background-color: #ffff00;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #000;
+}
+#home-page .content .create_room .create-room-btn a svg {
+  fill: #000;
+}
+
+#rooms-page.rooms-page .rooms__content .rooms_header {
+  margin-bottom: 1rem;
+}
+#rooms-page.rooms-page .rooms__content .rooms_header .title {
+  color: #fff;
+}
+
+#room-page.room-page .content .room__content {
+  height: 80vh;
+  position: sticky;
+  top: 5.625rem;
+  background-color: #0b0b0b;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+#room-page.room-page .content .room__content-head {
+  background-color: #000;
+  padding: 0.75rem;
+}
+#room-page.room-page .content .room__content-head .left .room-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#room-page.room-page .content .room__content-head .left .room-img img {
+  width: 100%;
+  height: 100%;
+}
+#room-page.room-page .content .room__content-head .left .room-name {
+  color: #fff;
+  display: block;
+}
+#room-page.room-page .content .room__content-head .left .owner {
+  color: gray;
+  font-size: 0.875rem;
+}
+#room-page.room-page .content .room__content-head .left .owner a {
+  color: #ffff00;
+  font-size: 0.875rem;
+  margin-left: 0.375rem;
+}
+#room-page.room-page .content .room__content-head .left .private {
+  color: red;
+  font-size: 0.75rem;
+}
+#room-page.room-page .content .room__content-head .left .public {
+  color: green;
+  font-size: 0.75rem;
+}
+#room-page.room-page .content .room__content-head .left .online_count {
+  color: #939393;
+  font-size: 0.75rem;
+}
+#room-page.room-page .content .room__content-head .right .update_room svg {
+  fill: none;
+  stroke: #fff;
+}
+#room-page.room-page .content .room__content-head .right .delete_room svg {
+  stroke-width: 1px;
+}
+#room-page.room-page .content .room__content-head .right .exit_room {
+  font-size: 0.875rem;
+  color: red;
+}
+#room-page.room-page .content .room__content-room__chat {
+  height: 100%;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box {
+  padding: 0 0.75rem;
+  height: 65vh;
+  overflow-y: scroll;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box::-webkit-scrollbar {
+  display: none;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li {
+  color: #fff;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li:not(:last-child) {
+  margin-top: 0.25rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 0.375rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content {
+  max-width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+  gap: 0.375rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content .user-img {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content .msg {
+  background-color: #141414;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content .msg .username a {
+  color: #ffff00;
+  font-size: 0.75rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.left .msg-content .msg p.text {
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 0.375rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content {
+  max-width: 50%;
+  gap: 0.375rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content .user-img {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content .msg {
+  background-color: #141414;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content .msg .username span {
+  color: #ffff00;
+  font-size: 0.75rem;
+}
+#room-page.room-page .content .room__content-room__chat #room_chat_box li.right .msg-content .msg p.text {
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+#room-page.room-page .content .room__content-room__chat .input-control {
+  width: 100%;
+  position: absolute;
+  bottom: 0rem;
+  background-color: #000;
+}
+#room-page.room-page .content .room__content-room__chat .input-control #room-chat-input {
+  background: transparent;
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: transparent;
+  color: #fff;
+}
+
+#favorite-page.favorite-page .favorite__content .favorite_header {
+  margin-bottom: 1rem;
+}
+#favorite-page.favorite-page .favorite__content .favorite_header .title {
+  color: #fff;
+}
+
+#search-page.search-page .search__content .search_header {
+  margin-bottom: 1rem;
+}
+#search-page.search-page .search__content .search_header .title {
+  color: #fff;
+}
+#search-page.search-page .search__content .search_header .title span {
+  margin-left: 0.375rem;
+}
+
+#profile-page.profile-page .profile__content .profile_image {
+  width: 15.625rem;
+  height: 15.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto;
+  margin-bottom: 1rem;
+  border: 1px solid #fff;
+}
+#profile-page.profile-page .profile__content .profile_image img {
+  width: 100%;
+  height: 100%;
+}
+#profile-page.profile-page .profile__content .user-details {
+  text-align: center;
+}
+#profile-page.profile-page .profile__content .user-details span {
+  display: block;
+}
+#profile-page.profile-page .profile__content .user-details .name {
+  color: #fff;
+  font-size: 1.125rem;
+}
+#profile-page.profile-page .profile__content .user-details .username {
+  color: #ffff00;
+}
+#profile-page.profile-page .profile__content .user-details .email {
+  color: gray;
+}
+#profile-page.profile-page .profile__content .user-details .message {
+  color: gray;
+  background-color: #0b0b0b;
+  border-radius: 0.25rem;
+  margin: 0 auto;
+  margin-top: 0.75rem;
+  width: 7.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.375rem;
+}
+#profile-page.profile-page .profile__content .user-details .message svg {
+  fill: gray;
+}
+#profile-page.profile-page .profile__content .user-details .message span {
+  margin: 0;
+}
+#profile-page.profile-page .profile__content .user-details .add-frd {
+  margin-top: 0.75rem;
+  display: block;
+}
+#profile-page.profile-page .profile__content .user-details .add-frd svg {
+  fill: green;
+}
+#profile-page.profile-page .profile__content .about {
+  margin-bottom: 1rem;
+}
+#profile-page.profile-page .profile__content .about span {
+  color: gray;
+  font-size: 1.125rem;
+  margin-bottom: 0.75rem;
+  display: block;
+}
+#profile-page.profile-page .profile__content .about p {
+  color: #939393;
+  font-size: 0.875rem;
+}
+#profile-page.profile-page .profile__content .hosted_rooms .title {
+  margin-bottom: 1rem;
+}
+#profile-page.profile-page .profile__content .hosted_rooms .title span {
+  color: #fff;
+}
+#profile-page.profile-page .profile__content .hosted_rooms .title small.count {
+  color: #939393;
+}
+
+#chat-page.chat-page .content .chat__content {
+  height: 80vh;
+  position: sticky;
+  top: 5.625rem;
+  background-color: #0b0b0b;
+  border-radius: 0.25rem;
+  overflow: hidden;
+}
+#chat-page.chat-page .content .chat__content-head {
+  background-color: #000;
+  padding: 0.75rem;
+}
+#chat-page.chat-page .content .chat__content-head .left .user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#chat-page.chat-page .content .chat__content-head .left .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#chat-page.chat-page .content .chat__content-head .left .name {
+  color: #fff;
+  display: block;
+}
+#chat-page.chat-page .content .chat__content-head .left .online {
+  color: green;
+  font-size: 0.75rem;
+}
+#chat-page.chat-page .content .chat__content-head .left .offline {
+  color: gray;
+  font-size: 0.75rem;
+}
+#chat-page.chat-page .content .chat__content-head .right .update_room svg {
+  fill: none;
+  stroke: #fff;
+}
+#chat-page.chat-page .content .chat__content-head .right .delete_room svg {
+  stroke-width: 1px;
+}
+#chat-page.chat-page .content .chat__content-head .right .exit_room {
+  font-size: 0.875rem;
+  color: red;
+}
+#chat-page.chat-page .content .chat__content-chat {
+  height: 100%;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box {
+  padding: 0 0.75rem;
+  height: 65vh;
+  overflow-y: scroll;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box::-webkit-scrollbar {
+  display: none;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li {
+  color: #fff;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li:not(:last-child) {
+  margin-top: 0.25rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-bottom: 0.375rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content {
+  max-width: 50%;
+  display: grid;
+  grid-template-columns: 1fr 11fr;
+  gap: 0.375rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content .user-img {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content .msg {
+  background-color: #141414;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content .msg .username a {
+  color: #ffff00;
+  font-size: 0.75rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.left .msg-content .msg p.text {
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right {
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-bottom: 0.375rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content {
+  max-width: 50%;
+  gap: 0.375rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content .user-img {
+  width: 2rem;
+  height: 2rem;
+  overflow: hidden;
+  border-radius: 50%;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content .user-img img {
+  width: 100%;
+  height: 100%;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content .msg {
+  background-color: #141414;
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content .msg .username span {
+  color: #ffff00;
+  font-size: 0.75rem;
+}
+#chat-page.chat-page .content .chat__content-chat #chat_box li.right .msg-content .msg p.text {
+  font-size: 0.75rem;
+  font-weight: 200;
+}
+#chat-page.chat-page .content .chat__content-chat .input-control {
+  width: 100%;
+  position: absolute;
+  bottom: 0rem;
+  background-color: #000;
+}
+#chat-page.chat-page .content .chat__content-chat .input-control #chat-input {
+  background: transparent;
+  width: 100%;
+  padding: 0.75rem;
+  outline: transparent;
+  border: transparent;
+  color: #fff;
+}
+
+#change-password-page.change-password-page .change-password__content {
+  background-color: #000;
+  padding: 1rem;
+  width: 28.125rem;
+  border-radius: 0.25rem;
+}
+#change-password-page.change-password-page .change-password__content .title a svg {
+  fill: none;
+  stroke: #fff;
+  width: 1.625rem;
+  height: 1.625rem;
+}
+#change-password-page.change-password-page .change-password__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+
+#new-password-page.new-password-page .new-password__content {
+  background-color: #000;
+  padding: 1rem;
+  width: 28.125rem;
+  border-radius: 0.25rem;
+}
+#new-password-page.new-password-page .new-password__content .title a svg {
+  fill: none;
+  stroke: #fff;
+  width: 1.625rem;
+  height: 1.625rem;
+}
+#new-password-page.new-password-page .new-password__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+
+#notifications-page.notifications-page .notifications__content .title {
+  margin-bottom: 1rem;
+}
+#notifications-page.notifications-page .notifications__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+#notifications-page.notifications-page .notifications__content .title small.count {
+  color: gray;
+  margin-left: 0.375rem;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li {
+  padding: 0.375rem 0;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li:not(:last-child) {
+  margin-bottom: 1rem;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li a.user-img {
+  width: 2.625rem;
+  height: 2.625rem;
+  overflow: hidden;
+  border-radius: 50%;
+  display: block;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li a.user-img img {
+  width: 100%;
+  height: 100%;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li .name {
+  color: #fff;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li .notifi-details p {
+  color: gray;
+  font-size: 0.875rem;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li span.i {
+  color: #fff;
+}
+#notifications-page.notifications-page .notifications__content .notifications_list li .room-details a {
+  color: #ffff00;
+}
+
+#message-page.message-page .message__content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+#message-page.message-page .message__content .user_msg {
+  display: block;
+}
+#message-page.message-page .message__content .user_msg.online .user-img {
+  border: 2px solid green;
+}
+#message-page.message-page .message__content .user_msg .user-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid gray;
+}
+#message-page.message-page .message__content .user_msg .user-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#message-page.message-page .message__content .user_msg .username {
+  color: gray;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+#people-page.people-page .people__content {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+#people-page.people-page .people__content .user {
+  display: block;
+}
+#people-page.people-page .people__content .user.online .user-img {
+  border: 2px solid green;
+}
+#people-page.people-page .people__content .user .user-img {
+  width: 6.25rem;
+  height: 6.25rem;
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid gray;
+}
+#people-page.people-page .people__content .user .user-img img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+#people-page.people-page .people__content .user .username {
+  color: gray;
+  margin-top: 0.5rem;
+  font-size: 0.875rem;
+  text-align: center;
+}
+
+#forget-password-page.forget-password-page .forget-password__content {
+  background-color: #000;
+  padding: 1rem;
+  width: 28.125rem;
+  border-radius: 0.25rem;
+}
+#forget-password-page.forget-password-page .forget-password__content .title a svg {
+  fill: none;
+  stroke: #fff;
+  width: 1.625rem;
+  height: 1.625rem;
+}
+#forget-password-page.forget-password-page .forget-password__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+
+#login-page.login-page .login__content {
+  background-color: #000;
+  padding: 1rem;
+  width: 28.125rem;
+  border-radius: 0.25rem;
+}
+#login-page.login-page .login__content .title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#login-page.login-page .login__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+
+#register-page.register-page .register__content {
+  background-color: #000;
+  padding: 1rem;
+  width: 28.125rem;
+  border-radius: 0.25rem;
+}
+#register-page.register-page .register__content .title {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+#register-page.register-page .register__content .title span {
+  color: #fff;
+  font-size: 1.125rem;
+}
+
+/*# sourceMappingURL=style.css.map */

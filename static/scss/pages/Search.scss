@@ -1,0 +1,17 @@
+@use '../utils' as *;
+
+#search-page {
+  &.search-page {
+    .search__content {
+      .search_header {
+        margin-bottom: rem(16);
+        .title {
+          color: $ColorLight;
+          span {
+            margin-left: rem(6);
+          }
+        }
+      }
+    }
+  }
+}

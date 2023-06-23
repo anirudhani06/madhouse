@@ -1,0 +1,39 @@
+@use '../utils' as *;
+
+#message-page.message-page {
+  .message__content {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: rem(16);
+    .user_msg {
+      display: block;
+      &.online {
+        .user-img {
+          border: 2px solid $ColorGreen;
+        }
+      }
+      .user-img {
+        width: rem(100);
+        height: rem(100);
+        margin: 0 auto;
+        overflow: hidden;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 2px solid $ColorGray;
+        img {
+          display: block;
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .username {
+        color: $ColorGray;
+        margin-top: rem(8);
+        font-size: $f-sm;
+        text-align: center;
+      }
+    }
+  }
+}

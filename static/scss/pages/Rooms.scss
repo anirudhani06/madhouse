@@ -1,0 +1,14 @@
+@use '../utils' as *;
+
+#rooms-page {
+  &.rooms-page {
+    .rooms__content {
+      .rooms_header {
+        margin-bottom: rem(16);
+        .title {
+          color: $ColorLight;
+        }
+      }
+    }
+  }
+}

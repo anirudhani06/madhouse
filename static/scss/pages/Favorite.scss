@@ -1,0 +1,14 @@
+@use '../utils' as *;
+
+#favorite-page {
+  &.favorite-page {
+    .favorite__content {
+      .favorite_header {
+        margin-bottom: rem(16);
+        .title {
+          color: $ColorLight;
+        }
+      }
+    }
+  }
+}

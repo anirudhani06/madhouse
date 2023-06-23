@@ -1,0 +1,76 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+.sidebar {
+  background-color: $ColorDarkMedium;
+  padding: rem(16);
+  border-radius: rem(4);
+  @include shadowDarkLight;
+  align-self: self-start;
+  position: sticky;
+  top: rem(88);
+
+  &__links {
+    .link {
+      &:not(:last-child) {
+        margin-bottom: rem(12);
+      }
+      &.active {
+        a {
+          background-color: $ColorDarkLight;
+          border-left: 1px solid $ColorPrimary;
+          svg {
+            fill: $ColorLight;
+          }
+          span {
+            color: $ColorLight;
+          }
+        }
+      }
+      a {
+        border-radius: rem(4);
+        display: block;
+        padding: rem(16);
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        gap: rem(16);
+        @include trans3;
+        svg {
+          fill: $ColorGray;
+        }
+        span {
+          color: $ColorGray;
+        }
+        &:hover {
+          background-color: $ColorDarkLight;
+          border-left: 1px solid $ColorPrimary;
+          svg {
+            fill: $ColorLight;
+          }
+          span {
+            color: $ColorLight;
+          }
+        }
+      }
+    }
+  }
+  .logout_btn {
+    a {
+      display: flex;
+      align-items: center;
+      justify-content: start;
+      padding: rem(16);
+      gap: rem(16);
+      svg {
+        stroke: $ColorLight;
+        fill: $ColorDark;
+      }
+      span {
+        color: $ColorBlue;
+        text-decoration: underline;
+        font-size: $f-sm;
+      }
+    }
+  }
+}

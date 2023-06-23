@@ -1,0 +1,19 @@
+@use '../utils' as *;
+
+#register-page.register-page {
+  .register__content {
+    background-color: $ColorDark;
+    padding: rem(16);
+    width: rem(450);
+    border-radius: rem(4);
+    .title {
+      text-align: center;
+      margin-bottom: rem(32);
+
+      span {
+        color: $ColorLight;
+        font-size: $f-md;
+      }
+    }
+  }
+}

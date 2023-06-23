@@ -1,0 +1,55 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+.extras {
+  border-radius: rem(4);
+  @include shadowDarkLight;
+  align-self: self-start;
+  position: sticky;
+  top: rem(88);
+  &__topics {
+    .title {
+      margin-bottom: rem(16);
+      span {
+        color: $ColorLight;
+        font-size: $f-md;
+      }
+    }
+    &__list {
+      li {
+        &.active {
+          a {
+            color: $ColorPrimary;
+          }
+          .count {
+            color: $ColorPrimary;
+          }
+        }
+        &:hover {
+          a {
+            color: $ColorPrimary;
+          }
+          .count {
+            color: $ColorPrimary;
+          }
+        }
+        &:not(:last-child) {
+          margin-bottom: rem(22);
+        }
+        a {
+          color: $ColorGray;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          @include trans3;
+        }
+        .count {
+          color: $ColorGrayLight;
+          background-color: $ColorDarkLight;
+          padding: rem(2) rem(8);
+          border-radius: rem(4);
+        }
+      }
+    }
+  }
+}

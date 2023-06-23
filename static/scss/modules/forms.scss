@@ -1,0 +1,410 @@
+@use '../utils' as *;
+.navbar__search-bar {
+  form {
+    .form-control {
+      padding: rem(10) rem(12);
+      width: rem(500);
+      border-radius: rem(4);
+      background-color: $ColorDarkLight;
+
+      input {
+        border: none;
+        outline: transparent;
+        background: transparent;
+        width: 100%;
+        color: $ColorLight;
+      }
+      button {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        svg {
+          fill: $ColorLight;
+        }
+      }
+    }
+  }
+}
+
+.create__room-form {
+  form {
+    .image_preview {
+      width: rem(250);
+      height: rem(250);
+      overflow: hidden;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-bottom: rem(16);
+      border: 1px solid $ColorLight;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .form-control {
+      margin-bottom: rem(16);
+      &.private {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: rem(8);
+        label {
+          color: $ColorLight;
+        }
+        input {
+          width: rem(14);
+          height: rem(14);
+        }
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        border: none;
+        outline: transparent;
+        border-radius: rem(4);
+        background: $ColorDarkMedium;
+        color: $ColorLight;
+      }
+      textarea {
+        width: 100%;
+        border: none;
+        outline: transparent;
+        border-radius: rem(4);
+        padding: rem(12);
+        background: $ColorDarkMedium;
+        color: $ColorLight;
+      }
+    }
+  }
+}
+
+.settings__update-form {
+  form {
+    .image_preview {
+      width: rem(250);
+      height: rem(250);
+      overflow: hidden;
+      border-radius: 50%;
+      margin: 0 auto;
+      margin-bottom: rem(16);
+      border: 1px solid $ColorLight;
+      img {
+        width: 100%;
+        height: 100%;
+      }
+    }
+    .form-control {
+      margin-bottom: rem(16);
+      &.private {
+        display: flex;
+        align-items: center;
+        justify-content: start;
+        gap: rem(8);
+        label {
+          color: $ColorLight;
+        }
+        input {
+          width: rem(14);
+          height: rem(14);
+        }
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        border: none;
+        outline: transparent;
+        border-radius: rem(4);
+        background: $ColorDarkMedium;
+        color: $ColorLight;
+      }
+      textarea {
+        width: 100%;
+        border: none;
+        outline: transparent;
+        border-radius: rem(4);
+        padding: rem(12);
+        background: $ColorDarkMedium;
+        color: $ColorLight;
+      }
+    }
+    .change_password {
+      text-decoration: underline;
+      font-size: $f-sm;
+      color: $ColorBlue;
+    }
+  }
+}
+.change-password__content {
+  form {
+    margin-top: rem(12);
+    .form-control {
+      width: 100%;
+      overflow: hidden;
+      background-color: $ColorDarkLight;
+      border-radius: rem(4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        border: none;
+        background: transparent;
+        color: $ColorLight;
+      }
+      button.eye {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.showpwd {
+          svg.eye-icon {
+            display: block;
+          }
+          svg.eye-cross {
+            display: none;
+          }
+        }
+        svg.eye-cross {
+          display: block;
+        }
+        svg.eye-icon {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+.forget-password__content {
+  form {
+    margin-top: rem(12);
+    .form-control {
+      width: 100%;
+      overflow: hidden;
+      background-color: $ColorDarkLight;
+      border-radius: rem(4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        border: none;
+        background: transparent;
+        color: $ColorLight;
+      }
+      button.eye {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.showpwd {
+          svg.eye-icon {
+            display: block;
+          }
+          svg.eye-cross {
+            display: none;
+          }
+        }
+        svg.eye-cross {
+          display: block;
+        }
+        svg.eye-icon {
+          display: none;
+        }
+      }
+    }
+  }
+}
+.register__content {
+  form {
+    margin-top: rem(12);
+    .form-control {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      background-color: $ColorDarkLight;
+      border-radius: rem(4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      input {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        border: none;
+        background: transparent;
+        color: $ColorLight;
+      }
+      button.eye {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.showpwd {
+          svg.eye-icon {
+            display: block;
+          }
+          svg.eye-cross {
+            display: none;
+          }
+        }
+        svg.eye-cross {
+          display: block;
+        }
+        svg.eye-icon {
+          display: none;
+        }
+      }
+    }
+    small.error {
+      color: $ColorRed;
+      display: block;
+      margin: rem(16) 0;
+    }
+    .form-footer {
+      p {
+        color: $ColorLight;
+        font-size: $f-sm;
+        a {
+          margin-left: rem(6);
+          color: $ColorBlue;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+.login__content {
+  form {
+    margin-top: rem(12);
+    position: relative;
+    small.error {
+      color: $ColorRed;
+      position: absolute;
+      top: rem(-22);
+    }
+    .form-control {
+      width: 100%;
+      overflow: hidden;
+      background-color: $ColorDarkLight;
+      border-radius: rem(4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        border: none;
+        background: transparent;
+        color: $ColorLight;
+      }
+      button.eye {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.showpwd {
+          svg.eye-icon {
+            display: block;
+          }
+          svg.eye-cross {
+            display: none;
+          }
+        }
+        svg.eye-cross {
+          display: block;
+        }
+        svg.eye-icon {
+          display: none;
+        }
+      }
+    }
+    .form-footer {
+      p {
+        color: $ColorLight;
+        font-size: $f-sm;
+        a {
+          margin-left: rem(6);
+          color: $ColorBlue;
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}
+.new-password__content {
+  form {
+    margin-top: rem(12);
+    .form-control {
+      width: 100%;
+      overflow: hidden;
+      background-color: $ColorDarkLight;
+      border-radius: rem(4);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      &:not(:last-child) {
+        margin-bottom: rem(16);
+      }
+      input {
+        width: 100%;
+        padding: rem(12);
+        outline: transparent;
+        border: none;
+        background: transparent;
+        color: $ColorLight;
+      }
+      button.eye {
+        background: transparent;
+        outline: transparent;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &.showpwd {
+          svg.eye-icon {
+            display: block;
+          }
+          svg.eye-cross {
+            display: none;
+          }
+        }
+        svg.eye-cross {
+          display: block;
+        }
+        svg.eye-icon {
+          display: none;
+        }
+      }
+    }
+  }
+}

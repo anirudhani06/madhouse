@@ -1,0 +1,164 @@
+@use '../utils' as *;
+
+#chat-page.chat-page {
+  .content {
+    .chat__content {
+      height: 80vh;
+      position: sticky;
+      top: rem(90);
+      background-color: $ColorDarkMedium;
+      border-radius: rem(4);
+      overflow: hidden;
+      &-head {
+        background-color: $ColorDark;
+        padding: rem(12);
+        .left {
+          .user-img {
+            width: rem(42);
+            height: rem(42);
+            border-radius: 50%;
+            overflow: hidden;
+            img {
+              width: 100%;
+              height: 100%;
+            }
+          }
+          .name {
+            color: $ColorLight;
+            display: block;
+          }
+
+          .online {
+            color: $ColorGreen;
+            font-size: $f-xs;
+          }
+          .offline {
+            color: $ColorGray;
+            font-size: $f-xs;
+          }
+        }
+        .right {
+          .update_room {
+            svg {
+              fill: none;
+              stroke: $ColorLight;
+            }
+          }
+          .delete_room {
+            svg {
+              stroke-width: 1px;
+            }
+          }
+          .exit_room {
+            font-size: $f-sm;
+            color: $ColorRed;
+          }
+        }
+      }
+      &-chat {
+        height: 100%;
+        #chat_box {
+          padding: 0 rem(12);
+          height: 65vh;
+          overflow-y: scroll;
+          &::-webkit-scrollbar {
+            display: none;
+          }
+          li {
+            color: #fff;
+            &:not(:last-child) {
+              margin-top: rem(4);
+            }
+            &.left {
+              display: flex;
+              align-items: center;
+              justify-content: start;
+              margin-bottom: rem(6);
+              .msg-content {
+                max-width: 50%;
+                display: grid;
+                grid-template-columns: 1fr 11fr;
+                gap: rem(6);
+                .user-img {
+                  width: rem(32);
+                  height: rem(32);
+                  overflow: hidden;
+                  border-radius: 50%;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                .msg {
+                  background-color: $ColorDarkLight;
+                  padding: rem(4);
+                  border-radius: rem(4);
+                  .username {
+                    a {
+                      color: $ColorPrimary;
+                      font-size: $f-xs;
+                    }
+                  }
+                  p.text {
+                    font-size: $f-xs;
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+            &.right {
+              display: flex;
+              align-items: center;
+              justify-content: end;
+              margin-bottom: rem(6);
+              .msg-content {
+                max-width: 50%;
+                gap: rem(6);
+                .user-img {
+                  width: rem(32);
+                  height: rem(32);
+                  overflow: hidden;
+                  border-radius: 50%;
+                  img {
+                    width: 100%;
+                    height: 100%;
+                  }
+                }
+                .msg {
+                  background-color: $ColorDarkLight;
+                  padding: rem(4);
+                  border-radius: rem(4);
+                  .username {
+                    span {
+                      color: $ColorPrimary;
+                      font-size: $f-xs;
+                    }
+                  }
+                  p.text {
+                    font-size: $f-xs;
+                    font-weight: 200;
+                  }
+                }
+              }
+            }
+          }
+        }
+        .input-control {
+          width: 100%;
+          position: absolute;
+          bottom: rem(0);
+          background-color: $ColorDark;
+
+          #chat-input {
+            background: transparent;
+            width: 100%;
+            padding: rem(12);
+            outline: transparent;
+            border: transparent;
+            color: $ColorLight;
+          }
+        }
+      }
+    }
+  }
+}

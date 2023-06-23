@@ -1,0 +1,146 @@
+@use '../utils' as *;
+
+button.favorite {
+  width: rem(26);
+  height: rem(26);
+  cursor: pointer;
+  background: $ColorDarkLight;
+  border-radius: 50%;
+  outline: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &.added {
+    svg {
+      fill: $ColorRed;
+      stroke: $ColorRed;
+    }
+  }
+  svg {
+    stroke: $ColorRed;
+    fill: $ColorDarkLight;
+  }
+}
+
+button.delete_room {
+  width: rem(26);
+  height: rem(26);
+  cursor: pointer;
+  background: $ColorDarkLight;
+  border-radius: 50%;
+  outline: transparent;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button.room_create_btn {
+  padding: rem(12) rem(46);
+  border: none;
+  outline: transparent;
+  background: $ColorPrimary;
+  font-size: $f-base;
+  border-radius: rem(4);
+  cursor: pointer;
+}
+button.room_update_btn {
+  padding: rem(12) rem(46);
+  border: none;
+  outline: transparent;
+  background: $ColorPrimary;
+  font-size: $f-base;
+  border-radius: rem(4);
+  cursor: pointer;
+}
+button.profile_update_btn {
+  padding: rem(12) rem(46);
+  border: none;
+  outline: transparent;
+  background: $ColorPrimary;
+  font-size: $f-base;
+  border-radius: rem(4);
+  cursor: pointer;
+}
+
+button.frd_btn {
+  background: transparent;
+  outline: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  .help-text {
+    position: absolute;
+    top: rem(-16);
+    left: auto;
+    font-size: $f-xs;
+    color: $ColorGrayLight;
+    display: none;
+  }
+  &:hover {
+    .help-text {
+      display: block;
+    }
+  }
+  &.remove-frd {
+    svg {
+      width: rem(16);
+      height: rem(16);
+      fill: $ColorRed;
+    }
+  }
+  &.add-frd {
+    svg {
+      width: rem(16);
+      height: rem(16);
+      fill: $ColorGreen;
+    }
+  }
+}
+
+button.member_btn {
+  background: transparent;
+  outline: transparent;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  .help-text {
+    position: absolute;
+    top: rem(-16);
+    left: auto;
+    font-size: $f-xs;
+    color: $ColorGrayLight;
+    display: none;
+  }
+  &:hover {
+    .help-text {
+      display: block;
+    }
+  }
+  &.remove-member {
+    svg {
+      width: rem(16);
+      height: rem(16);
+      fill: $ColorPrimary;
+    }
+  }
+}
+
+button.submit_chat {
+  border: none;
+  outline: transparent;
+  background-color: $ColorPrimary;
+  padding: rem(12);
+  cursor: pointer;
+}
+
+button.change_password_submit_btn {
+  outline: transparent;
+  border: none;
+  background: $ColorPrimary;
+  padding: rem(6) rem(16);
+  border-radius: rem(4);
+  overflow: hidden;
+  cursor: pointer;
+}

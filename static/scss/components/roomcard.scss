@@ -1,0 +1,132 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+.room__card {
+  background-color: $ColorDarkMedium;
+  color: $ColorLight;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  padding: rem(12);
+  border-radius: rem(12);
+  gap: rem(12);
+  &:not(:last-child) {
+    margin-bottom: rem(16);
+  }
+  &-img {
+    // aspect-ratio: 3/2;
+    border-radius: rem(12);
+    overflow: hidden;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &-content {
+    display: grid;
+    gap: rem(12);
+    .room-head {
+      a.update_room {
+        width: rem(26);
+        height: rem(26);
+        background: $ColorDarkLight;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        svg {
+          fill: none;
+          stroke: $ColorLight;
+          width: rem(16);
+          height: rem(16);
+        }
+      }
+    }
+    .room-details {
+      span {
+        font-size: $f-xs;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: rem(6);
+        svg {
+          width: rem(12);
+          height: rem(12);
+          fill: $ColorGray;
+        }
+        &.room-members {
+          span {
+            color: $ColorGray;
+          }
+        }
+        &.room-online {
+          span {
+            color: $ColorGray;
+          }
+        }
+        &.room-private {
+          color: $ColorRed;
+        }
+        color: $ColorGreen;
+        &.category {
+          a {
+            color: $ColorDark;
+            background-color: $ColorGrayLight;
+            padding: 0 rem(8);
+            border-radius: rem(4);
+          }
+        }
+      }
+    }
+    .room-footer {
+      .owner {
+        display: flex;
+        align-items: start;
+        justify-content: start;
+        gap: rem(8);
+        .owner-img {
+          width: rem(32);
+          height: rem(32);
+          border-radius: 50%;
+          overflow: hidden;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        .owner-name {
+          font-size: $f-xs;
+          text-align: left;
+          span {
+            color: $ColorGray;
+          }
+          .online {
+            width: rem(8);
+            height: rem(8);
+            display: block;
+            background-color: $ColorGreen;
+            border-radius: 50%;
+          }
+          .offline {
+            width: rem(8);
+            height: rem(8);
+            display: block;
+            background-color: $ColorGray;
+            border-radius: 50%;
+          }
+        }
+        .last-online {
+          font-size: $f-xxs;
+          color: $ColorGrayLight;
+        }
+      }
+      .join_room {
+        background-color: $ColorPrimary;
+        color: $ColorDark;
+        padding: rem(4) rem(16);
+        border-radius: rem(4);
+        font-size: $f-sm;
+      }
+    }
+  }
+}

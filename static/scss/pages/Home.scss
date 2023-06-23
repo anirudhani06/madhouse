@@ -1,0 +1,33 @@
+@use '../utils' as *;
+@use '../mixins' as *;
+
+#home-page {
+  .content {
+    .create_room {
+      margin-bottom: rem(18);
+      .room {
+        &__name {
+          color: $ColorLight;
+        }
+        &__count {
+          color: $ColorGray;
+        }
+      }
+      .create-room-btn {
+        a {
+          background-color: $ColorPrimary;
+          padding: rem(8) rem(16);
+          border-radius: rem(4);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          gap: rem(12);
+          color: $ColorDark;
+          svg {
+            fill: $ColorDark;
+          }
+        }
+      }
+    }
+  }
+}
