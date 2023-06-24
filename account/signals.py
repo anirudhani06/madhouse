@@ -13,7 +13,7 @@ def create_profile(sender, instance, created, *args, **kwargs):
     if created:
         profile.user = instance
         profile.username = instance.username
-        profile.user = instance.user
+        profile.name = instance.name
         profile.email = instance.email
         profile.save()
 
