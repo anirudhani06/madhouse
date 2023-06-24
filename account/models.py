@@ -33,7 +33,7 @@ class UserManager(BaseUserManager):
         if others.get("is_staff") is not True:
             raise ValueError(_("Admin should be set is_staff is True"))
 
-        return self.create_user(username, email, password, others)
+        return self.create_user(username, email, password, **others)
 
 
 class User(AbstractBaseUser, PermissionsMixin):
