@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
 )
 
 from django.utils.translation import gettext_lazy as _
+import uuid
 
 # Create your models here.
 
@@ -43,6 +44,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    date_joined = models.DateTimeField(auto_now_add=True)
 
     objects = UserManager()
 
@@ -55,3 +57,24 @@ class User(AbstractBaseUser, PermissionsMixin):
     class Meta:
         verbose_name = "user"
         verbose_name_plural = "users"
+
+
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name="profile")
+    id = models.UUIDField(
+        default=uuid.uuid4, primary_key=True, unique=True, editable=False
+    )
+    username = models.CharField(max_length=40, unique=True)
+    name = models.CharField(max_length=40, unique=True)
+    avatar = models.ImageField(upload_to="profile/", default="/media/default.jpg")
+    email = models.CharField(max_length=255, unique=True)
+    bio = models.TextField(blank=True)
+    friends = models.ManyToManyField("self", blank=True)
+    is_online = models.BooleanField(default=False)
+
+    def __str__(self) -> str:
+        return self.username
+
+    class Meta:
+        verbose_name = "Profile"
+        verbose_name_plural = "Profiles"
