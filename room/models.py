@@ -6,6 +6,9 @@ from account.models import Profile
 
 class Room(models.Model):
     name = models.CharField(max_length=40, unique=True)
+    category = models.ForeignKey(
+        "Category", on_delete=models.CASCADE, related_name="rooms"
+    )
     owner = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name="rooms")
     members = models.ManyToManyField(Profile, related_name="members")
     is_private = models.BooleanField(default=False)
