@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    # Internel apps
+    # apps
     "account.apps.AccountConfig",
+    "room.apps.RoomConfig",
 ]
 
 MIDDLEWARE = [
