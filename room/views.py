@@ -13,8 +13,9 @@ from .forms import RoomForm
 def home(request):
     rooms = Room.objects.all()
     categories = Category.objects.all()
+    favourites = request.user.profile.favourites.all()
 
-    context = {"categories": categories, "rooms": rooms}
+    context = {"categories": categories, "rooms": rooms, "favourites": favourites}
     return render(request, "room/home.html", context)
 
 
