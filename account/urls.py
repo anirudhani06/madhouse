@@ -8,4 +8,5 @@ urlpatterns = [
     path("register/", views.user_register, name="register"),
     path("profile/", views.profile, name="profile"),
     path("settings/", views.settings, name="settings"),
+    path("favourite/", views.favourite, name="favourite"),
 ]
