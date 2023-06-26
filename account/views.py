@@ -3,6 +3,9 @@ from .forms import RegisterForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from room.models import Room, Category
+from .models import Profile
+from .utils import search_users
 
 # Create your views here.
 
@@ -17,6 +20,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
+            return redirect("home")
 
     return render(request, "user/login.html")
 
@@ -45,5 +49,20 @@ def user_register(request):
 @login_required(login_url="login")
 def profile(request):
     user = request.user.profile
-    context = {"user": user}
+    rooms = Room.objects.select_related("owner").filter(owner=user)
+    context = {"user": user, "rooms": rooms}
     return render(request, "user/profile.html", context)
+
+
+@login_required(login_url="login")
+def settings(request):
+    return render(request, "user/settings.html")
+
+
+@login_required(login_url="login")
+def people(request):
+    page = "USERS"
+    categories = Category.objects.all()
+    users = search_users(request)
+    context = {"categories": categories, "users": users, "page": page}
+    return render(request, "user/people.html", context)
