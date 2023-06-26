@@ -6,6 +6,7 @@ const changePwdPage = document.getElementById('change-password-page');
 const newPwdPage = document.getElementById('new-password-page');
 const loginPage = document.getElementById('login-page');
 const registerPage = document.getElementById('register-page');
+const sidebarLinks = document.querySelector('.sidebar__links');
 
 if (signPage) {
   const passwordEye = signPage.querySelector('.password_eye');
@@ -100,7 +101,6 @@ if (registerPage) {
 }
 if (loginPage) {
   const eyes = loginPage.querySelector('.eye');
-
   eyes.addEventListener('click', () => {
     const currentEye = eyes;
     const inputElem = currentEye.parentElement.querySelector('input');
@@ -112,4 +112,16 @@ if (loginPage) {
       inputElem.setAttribute('type', 'text');
     }
   });
+}
+
+if (sidebarLinks) {
+  let li = sidebarLinks.querySelectorAll('.link');
+  const url = window.location.href;
+  for (let i = 0; i < li.length; i++) {
+    if (url === li[i].querySelector('a').href) {
+      li[i].classList.add('active');
+    } else {
+      li[i].classList.remove('active');
+    }
+  }
 }
