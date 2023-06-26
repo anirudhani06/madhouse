@@ -116,9 +116,9 @@ if (loginPage) {
 
 if (sidebarLinks) {
   let li = sidebarLinks.querySelectorAll('.link');
-  const url = window.location.href;
+  const url = window.location.pathname;
   for (let i = 0; i < li.length; i++) {
-    if (url === li[i].querySelector('a').href) {
+    if (url === li[i].querySelector('a').pathname) {
       li[i].classList.add('active');
     } else {
       li[i].classList.remove('active');
