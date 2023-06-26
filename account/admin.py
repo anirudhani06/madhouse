@@ -12,7 +12,12 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ["username", "name", "email"]
+    list_display = [
+        "username",
+        "name",
+        "avatar",
+        "email",
+    ]
 
 
 # group unregistered
