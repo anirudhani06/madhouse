@@ -49,3 +49,9 @@ def create_room(request):
         return redirect("home")
     context = {"categories": categories, "form": form}
     return render(request, "room/create_room.html", context)
+
+
+@csrf_exempt
+@login_required(login_url="login")
+def update_room(request):
+    return render(request, "room/update_room.html")
