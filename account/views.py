@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 from .forms import RegisterForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
@@ -66,3 +67,26 @@ def people(request):
     users = search_users(request)
     context = {"categories": categories, "users": users, "page": page}
     return render(request, "user/people.html", context)
+
+
+@csrf_exempt
+@login_required(login_url="login")
+def favourite(request):
+    user = request.user.profile
+    categories = Category.objects.all()
+    rooms = user.favourites.all()
+
+    if request.method == "POST":
+        room = Room.objects.filter(id=int(request.POST.get("id"))).first()
+        if room is not None:
+            if room not in user.favourites.all():
+                user.favourites.add(room.id)
+                user.save()
+                return JsonResponse({"success": True})
+            else:
+                user.favourites.remove(room.id)
+                user.save()
+                return JsonResponse({"success": False})
+
+    context = {"categories": categories, "rooms": rooms}
+    return render(request, "user/favourite.html", context)
