@@ -72,6 +72,9 @@ class Profile(models.Model):
     friends = models.ManyToManyField("self", blank=True)
     is_online = models.BooleanField(default=False)
 
+    def get_avatar(self):
+        return self.avatar.url
+
     def __str__(self) -> str:
         return self.username
 
