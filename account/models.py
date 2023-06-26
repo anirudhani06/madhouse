@@ -70,6 +70,9 @@ class Profile(models.Model):
     email = models.CharField(max_length=255, unique=True)
     bio = models.TextField(blank=True)
     friends = models.ManyToManyField("self", blank=True)
+    favourites = models.ManyToManyField(
+        to="room.Room", related_name="favourites", blank=True
+    )
     is_online = models.BooleanField(default=False)
 
     def get_avatar(self):
