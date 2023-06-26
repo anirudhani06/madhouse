@@ -25,6 +25,7 @@ class Room(models.Model):
     class Meta:
         verbose_name = "Room"
         verbose_name_plural = "Rooms"
+        ordering = ["-updated_at"]
 
 
 class Category(models.Model):
