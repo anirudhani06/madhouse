@@ -52,7 +52,13 @@ def profile(request):
     user = request.user.profile
     rooms = Room.objects.select_related("owner").filter(owner=user)
     favourites = user.favourites.all()
-    context = {"user": user, "rooms": rooms, "favourites": favourites}
+    friend_list = user.friends.all()
+    context = {
+        "user": user,
+        "rooms": rooms,
+        "favourites": favourites,
+        "friend_list": friend_list,
+    }
     return render(request, "user/profile.html", context)
 
 
@@ -94,11 +100,13 @@ def user_profile(request, username):
     rooms = Room.objects.select_related("owner").filter(owner=user)
     favourites = request.user.profile.favourites.all()
     friends = request.user.profile.friends.all()
+    friend_list = user.friends.all()
     context = {
         "user": user,
         "rooms": rooms,
         "favourites": favourites,
         "friends": friends,
+        "friend_list": friend_list,
     }
 
     return render(request, "user/profile.html", context)
@@ -139,8 +147,16 @@ def add_friend(request):
     if friend in user.friends.all():
         user.friends.remove(friend)
         user.save()
+        if user in friend.friends.all():
+            friend.friends.remove(user)
+            friend.save()
+
         return JsonResponse({"success": False})
     else:
         user.friends.add(friend)
         user.save()
+        if user not in friend.friends.all():
+            friend.friends.add(user)
+            friend.save()
+
         return JsonResponse({"success": True})
