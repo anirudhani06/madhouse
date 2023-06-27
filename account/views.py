@@ -93,7 +93,13 @@ def user_profile(request, username):
 
     rooms = Room.objects.select_related("owner").filter(owner=user)
     favourites = request.user.profile.favourites.all()
-    context = {"user": user, "rooms": rooms, "favourites": favourites}
+    friends = request.user.profile.friends.all()
+    context = {
+        "user": user,
+        "rooms": rooms,
+        "favourites": favourites,
+        "friends": friends,
+    }
 
     return render(request, "user/profile.html", context)
 
@@ -119,3 +125,22 @@ def favourite(request):
 
     context = {"categories": categories, "rooms": rooms}
     return render(request, "user/favourite.html", context)
+
+
+@csrf_exempt
+@login_required(login_url="login")
+def add_friend(request):
+    user = request.user.profile
+    friend = Profile.objects.filter(username=request.POST.get("username")).first()
+
+    if friend is None:
+        return HttpResponse("User dose not exists")
+
+    if friend in user.friends.all():
+        user.friends.remove(friend)
+        user.save()
+        return JsonResponse({"success": False})
+    else:
+        user.friends.add(friend)
+        user.save()
+        return JsonResponse({"success": True})
