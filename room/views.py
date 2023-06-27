@@ -24,8 +24,14 @@ def search_rooms(request):
     rooms = search_filter(request)
     query = request.GET.get("q")
     categories = Category.objects.all()
+    favourites = request.user.profile.favourites.all()
 
-    context = {"categories": categories, "rooms": rooms, "query": query}
+    context = {
+        "categories": categories,
+        "rooms": rooms,
+        "query": query,
+        "favourites": favourites,
+    }
     return render(request, "room/search.html", context)
 
 
