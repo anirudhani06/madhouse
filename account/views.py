@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
 from .forms import RegisterForm, ProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
@@ -82,6 +82,20 @@ def people(request):
     users = search_users(request)
     context = {"categories": categories, "users": users, "page": page}
     return render(request, "user/people.html", context)
+
+
+@login_required(login_url="login")
+def user_profile(request, username):
+    user = Profile.objects.filter(username=username).first()
+
+    if user is None:
+        return HttpResponse("user dose not exists")
+
+    rooms = Room.objects.select_related("owner").filter(owner=user)
+    favourites = request.user.profile.favourites.all()
+    context = {"user": user, "rooms": rooms, "favourites": favourites}
+
+    return render(request, "user/profile.html", context)
 
 
 @csrf_exempt
