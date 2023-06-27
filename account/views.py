@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import JsonResponse
-from .forms import RegisterForm
+from .forms import RegisterForm, ProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
@@ -51,13 +51,28 @@ def user_register(request):
 def profile(request):
     user = request.user.profile
     rooms = Room.objects.select_related("owner").filter(owner=user)
-    context = {"user": user, "rooms": rooms}
+    favourites = user.favourites.all()
+    context = {"user": user, "rooms": rooms, "favourites": favourites}
     return render(request, "user/profile.html", context)
 
 
+@csrf_exempt
 @login_required(login_url="login")
 def settings(request):
-    return render(request, "user/settings.html")
+    form = ProfileForm(instance=request.user.profile)
+
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
+
+        if form.is_valid():
+            profile = form.save(commit=False)
+            profile.name = profile.name.capitalize()
+            profile.username = profile.username.lower()
+            profile.save()
+            return redirect("profile")
+
+    context = {"form": form}
+    return render(request, "user/settings.html", context)
 
 
 @login_required(login_url="login")
