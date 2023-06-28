@@ -32,29 +32,3 @@ def update_profile(sender, instance, created, *args, **kwargs):
             pass
     else:
         pass
-
-
-@receiver(m2m_changed, sender=Profile.friends.through)
-def friend_request(sender, instance, action, *args, **kwargs):
-    if action == "post_add":
-        user = Profile.objects.filter(id=instance.id).first()
-        receiver_user = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
-        if receiver_user is not None:
-            friend_request = FriendRequest()
-            friend_request.sender = user
-            friend_request.receiver = receiver_user
-            friend_request.save()
-            receiver_user.is_notify_read = True
-            receiver_user.save()
-
-    if action == "post_remove":
-        user = Profile.objects.filter(id=instance.id).first()
-        receiver_user = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
-
-        friend_request = FriendRequest()
-        friend_request.sender = user
-        friend_request.receiver = receiver_user
-        friend_request.msg = "removed you from friend list"
-        friend_request.save()
-        receiver_user.is_notify_read = True
-        receiver_user.save()
