@@ -150,18 +150,14 @@ def add_friend(request):
     if friend in user.friends.all():
         user.friends.remove(friend)
         user.save()
-        if user in friend.friends.all():
-            friend.friends.remove(user)
-            friend.save()
-
+        friend.friends.remove(user)
+        friend.save()
         return JsonResponse({"success": False})
     else:
         user.friends.add(friend)
         user.save()
-        if user not in friend.friends.all():
-            friend.friends.add(user)
-            friend.save()
-
+        friend.friends.add(user)
+        friend.save()
         return JsonResponse({"success": True})
 
 
