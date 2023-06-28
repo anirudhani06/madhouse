@@ -51,7 +51,8 @@ def create_room(request):
         room.owner = request.user.profile
         room.name = name
         room.category = category
-        room.coverpic = image
+        if image is not None:
+            room.coverpic = image
         room.is_private = is_private
         room.save()
         return redirect("home")
