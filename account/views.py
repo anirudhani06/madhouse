@@ -170,5 +170,7 @@ def notifications(request):
     friend_requests = FriendRequest.objects.select_related("receiver").filter(
         receiver=request.user.profile
     )
+    request.user.profile.is_notify_read = False
+    request.user.profile.save()
     context = {"friend_requests": friend_requests}
     return render(request, "user/notifications.html", context)
