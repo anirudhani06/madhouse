@@ -186,3 +186,16 @@ def notifications(request):
     request.user.profile.save()
     context = {"friend_requests": friend_requests}
     return render(request, "user/notifications.html", context)
+
+
+@login_required(login_url="login")
+def delete_frd_req(request, id):
+    req = FriendRequest.objects.filter(id=int(id)).first()
+
+    if req is None:
+        return HttpResponse("Request not found")
+    if req.receiver == request.user.profile:
+        req.delete()
+    else:
+        return HttpResponse("You cannot delete this request")
+    return redirect("notifications")
