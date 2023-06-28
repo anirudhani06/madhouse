@@ -39,11 +39,15 @@ def friend_request(sender, instance, action, *args, **kwargs):
     if action == "post_add":
         user = Profile.objects.filter(id=instance.id).first()
         receiver = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
+        receiver.is_notify_read = True
+        receiver.save()
         FriendRequest.objects.create(sender=user, receiver=receiver)
 
     if action == "post_remove":
         user = Profile.objects.filter(id=instance.id).first()
         receiver = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
+        receiver.is_notify_read = True
+        receiver.save()
         FriendRequest.objects.create(
             sender=user, receiver=receiver, msg="removed you from friend list"
         )
