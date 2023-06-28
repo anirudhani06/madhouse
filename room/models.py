@@ -6,7 +6,7 @@ from account.models import Profile
 
 class Room(models.Model):
     name = models.CharField(max_length=40, unique=True)
-    slug = models.SlugField(blank=True, max_length=60)
+    slug = models.SlugField(blank=True, max_length=60, unique=True)
     coverpic = models.ImageField(upload_to="rooms/", default="default/room.jpg")
     category = models.ForeignKey(
         "Category", on_delete=models.CASCADE, related_name="rooms"
@@ -18,7 +18,10 @@ class Room(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
 
     def get_cover_pic(self):
-        return self.coverpic.url
+        if self.coverpic.url:
+            return self.coverpic.url
+        else:
+            return ""
 
     def __str__(self) -> str:
         return self.name
