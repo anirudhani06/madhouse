@@ -10,5 +10,6 @@ urlpatterns = [
     path("user_profile/<str:username>/", views.user_profile, name="user_profile"),
     path("settings/", views.settings, name="settings"),
     path("favourite/", views.favourite, name="favourite"),
+    path("notifications/", views.notifications, name="notifications"),
     path("add_friend/", views.add_friend, name="add_friend"),
 ]
