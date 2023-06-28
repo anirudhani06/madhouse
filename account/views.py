@@ -97,6 +97,9 @@ def user_profile(request, username):
     if user is None:
         return HttpResponse("user dose not exists")
 
+    if user == request.user.profile:
+        return redirect("profile")
+
     rooms = Room.objects.select_related("owner").filter(owner=user)
     favourites = request.user.profile.favourites.all()
     friends = request.user.profile.friends.all()
