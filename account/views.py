@@ -163,3 +163,8 @@ def add_friend(request):
             friend.save()
 
         return JsonResponse({"success": True})
+
+
+@login_required(login_url="login")
+def notifications(request):
+    return render(request, "user/notifications.html")
