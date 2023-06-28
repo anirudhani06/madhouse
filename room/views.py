@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
 from .models import Room, Category
@@ -86,3 +86,21 @@ def update_room(request, room_name):
 
     context = {"categories": categories, "room": room}
     return render(request, "room/update_room.html", context)
+
+
+@csrf_exempt
+@login_required(login_url="login")
+def delete_room(request):
+    if request.method == "POST":
+        id = request.POST.get("id")
+        user = request.user.profile
+        room = Room.objects.filter(id=int(id)).first()
+
+        if room is None:
+            return HttpResponse("Room dose not exists")
+
+        if room.owner != user:
+            return HttpResponse("You can not delete this room!")
+
+        room.delete()
+        return JsonResponse({"success": True})
