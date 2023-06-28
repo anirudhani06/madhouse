@@ -152,11 +152,27 @@ def add_friend(request):
         user.save()
         friend.friends.remove(user)
         friend.save()
+
+        friend_request = FriendRequest()
+        friend_request.sender = user
+        friend_request.receiver = friend
+        friend_request.msg = "removed you from friend list"
+        friend_request.save()
+        friend.is_notify_read = True
+        friend.save()
+
         return JsonResponse({"success": False})
     else:
         user.friends.add(friend)
         user.save()
         friend.friends.add(user)
+        friend.save()
+        friend_request = FriendRequest()
+        friend_request.sender = user
+        friend_request.receiver = friend
+
+        friend_request.save()
+        friend.is_notify_read = True
         friend.save()
         return JsonResponse({"success": True})
 
