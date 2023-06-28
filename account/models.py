@@ -84,3 +84,21 @@ class Profile(models.Model):
     class Meta:
         verbose_name = "Profile"
         verbose_name_plural = "Profiles"
+
+
+class FriendRequest(models.Model):
+    sender = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    receiver = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="friend_requests"
+    )
+    msg = models.TextField(max_length=20, blank=True, default="Added To Your Friend")
+    is_read = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self) -> str:
+        return self.receiver.username
+
+    class Meta:
+        verbose_name = "Friend Request"
+        verbose_name_plural = "Friend Requests"
+        ordering = ["-created_at"]
