@@ -6,6 +6,7 @@ from account.models import Profile
 
 class Room(models.Model):
     name = models.CharField(max_length=40, unique=True)
+    slug = models.SlugField(blank=True, max_length=60)
     coverpic = models.ImageField(upload_to="rooms/", default="default/room.jpg")
     category = models.ForeignKey(
         "Category", on_delete=models.CASCADE, related_name="rooms"
