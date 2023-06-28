@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from room.models import Room, Category
-from .models import Profile
+from .models import Profile, FriendRequest
 from .utils import search_users
 
 # Create your views here.
@@ -167,4 +167,8 @@ def add_friend(request):
 
 @login_required(login_url="login")
 def notifications(request):
-    return render(request, "user/notifications.html")
+    friend_requests = FriendRequest.objects.select_related("receiver").filter(
+        receiver=request.user.profile
+    )
+    context = {"friend_requests": friend_requests}
+    return render(request, "user/notifications.html", context)
