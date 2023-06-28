@@ -1,7 +1,7 @@
-from django.db.models.signals import post_save
+from django.db.models.signals import post_save, m2m_changed
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
-from .models import Profile
+from .models import Profile, FriendRequest
 
 USER = get_user_model()
 
@@ -32,3 +32,18 @@ def update_profile(sender, instance, created, *args, **kwargs):
             pass
     else:
         pass
+
+
+@receiver(m2m_changed, sender=Profile.friends.through)
+def friend_request(sender, instance, action, *args, **kwargs):
+    if action == "post_add":
+        user = Profile.objects.filter(id=instance.id).first()
+        receiver = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
+        FriendRequest.objects.create(sender=user, receiver=receiver)
+
+    if action == "post_remove":
+        user = Profile.objects.filter(id=instance.id).first()
+        receiver = Profile.objects.filter(id__in=kwargs.get("pk_set")).first()
+        FriendRequest.objects.create(
+            sender=user, receiver=receiver, msg="removed you from friend list"
+        )
