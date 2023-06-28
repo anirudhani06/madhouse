@@ -74,6 +74,7 @@ class Profile(models.Model):
         to="room.Room", related_name="favourites", blank=True
     )
     is_online = models.BooleanField(default=False)
+    is_notify_read = models.BooleanField(default=False)
 
     def get_avatar(self):
         return self.avatar.url
@@ -92,7 +93,6 @@ class FriendRequest(models.Model):
         Profile, on_delete=models.CASCADE, related_name="friend_requests"
     )
     msg = models.TextField(max_length=20, blank=True, default="Added To Your Friend")
-    is_read = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self) -> str:
