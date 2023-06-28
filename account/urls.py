@@ -12,4 +12,5 @@ urlpatterns = [
     path("favourite/", views.favourite, name="favourite"),
     path("notifications/", views.notifications, name="notifications"),
     path("add_friend/", views.add_friend, name="add_friend"),
+    path("delete_req/<int:id>/", views.delete_frd_req, name="delete_req"),
 ]
