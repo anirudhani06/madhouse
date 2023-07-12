@@ -152,16 +152,3 @@ def add_friend(request):
         friend.is_notify_read = True
         friend.save()
         return JsonResponse({"success": True})
-
-
-@login_required(login_url="login")
-def delete_frd_req(request, id):
-    req = FriendRequest.objects.filter(id=int(id)).first()
-
-    if req is None:
-        return HttpResponse("Request not found")
-    if req.receiver == request.user.profile:
-        req.delete()
-    else:
-        return HttpResponse("You cannot delete this request")
-    return redirect("notifications")
