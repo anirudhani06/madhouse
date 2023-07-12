@@ -43,3 +43,19 @@ class Category(models.Model):
     class Meta:
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+
+
+class Favourites(models.Model):
+    user = models.ForeignKey(
+        Profile, on_delete=models.CASCADE, related_name="favourites"
+    )
+    room = models.ForeignKey(Room, on_delete=models.CASCADE, related_name="favourites")
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self) -> str:
+        return self.user.username
+
+    class Meta:
+        verbose_name = "Favourite"
+        verbose_name_plural = "Favourites"
