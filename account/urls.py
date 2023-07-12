@@ -10,5 +10,4 @@ urlpatterns = [
     path("user_profile/<str:username>/", views.user_profile, name="user_profile"),
     path("settings/", views.settings, name="settings"),
     path("add_friend/", views.add_friend, name="add_friend"),
-    path("delete_req/<int:id>/", views.delete_frd_req, name="delete_req"),
 ]
