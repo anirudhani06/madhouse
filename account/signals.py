@@ -1,7 +1,7 @@
-from django.db.models.signals import post_save, m2m_changed
+from django.db.models.signals import post_save, m2m_changed, pre_save
 from django.dispatch import receiver
 from django.contrib.auth import get_user_model
-from .models import Profile, FriendRequest
+from .models import Profile
 
 USER = get_user_model()
 
@@ -32,3 +32,15 @@ def update_profile(sender, instance, created, *args, **kwargs):
             pass
     else:
         pass
+
+
+@receiver(pre_save, sender=USER)
+def pre_save_user(sender, instance, *args, **kwargs):
+    instance.username = instance.username.lower()
+    instance.save()
+
+
+@receiver(pre_save, sender=Profile)
+def pre_save_profile(sender, instance, *args, **kwargs):
+    instance.username = instance.username.lower()
+    instance.save()
