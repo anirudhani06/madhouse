@@ -37,10 +37,8 @@ def update_profile(sender, instance, created, *args, **kwargs):
 @receiver(pre_save, sender=USER)
 def pre_save_user(sender, instance, *args, **kwargs):
     instance.username = instance.username.lower()
-    instance.save()
 
 
 @receiver(pre_save, sender=Profile)
 def pre_save_profile(sender, instance, *args, **kwargs):
     instance.username = instance.username.lower()
-    instance.save()
