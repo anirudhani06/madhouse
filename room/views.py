@@ -105,3 +105,8 @@ def delete_room(request):
 
         room.delete()
         return JsonResponse({"success": True})
+
+
+@login_required(login_url="login")
+def favourites(request):
+    return render(request, "room/favourite.html")
