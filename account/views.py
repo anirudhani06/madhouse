@@ -117,29 +117,6 @@ def user_profile(request, username):
 
 @csrf_exempt
 @login_required(login_url="login")
-def favourite(request):
-    user = request.user.profile
-    categories = Category.objects.all()
-    rooms = user.favourites.all()
-
-    if request.method == "POST":
-        room = Room.objects.filter(id=int(request.POST.get("id"))).first()
-        if room is not None:
-            if room not in user.favourites.all():
-                user.favourites.add(room.id)
-                user.save()
-                return JsonResponse({"success": True})
-            else:
-                user.favourites.remove(room.id)
-                user.save()
-                return JsonResponse({"success": False})
-
-    context = {"categories": categories, "rooms": rooms}
-    return render(request, "user/favourite.html", context)
-
-
-@csrf_exempt
-@login_required(login_url="login")
 def add_friend(request):
     user = request.user.profile
     friend = Profile.objects.filter(username=request.POST.get("username")).first()
