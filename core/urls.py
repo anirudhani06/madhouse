@@ -8,6 +8,7 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("", include("room.urls")),
     path("user/", include("account.urls")),
+    path("chat/", include("chat.urls")),
     path("__debug__/", include(debug_toolbar.urls)),
 ]
 
