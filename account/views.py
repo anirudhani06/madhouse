@@ -4,7 +4,7 @@ from .forms import RegisterForm, ProfileForm
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
-from room.models import Room, Category
+from room.models import Room, Category, Favourites
 from .models import Profile, FriendRequest
 from .utils import search_users
 
@@ -51,7 +51,7 @@ def user_register(request):
 def profile(request):
     user = request.user.profile
     rooms = Room.objects.select_related("owner").filter(owner=user)
-    favourites = user.favourites.all()
+    favourites = Favourites.objects.filter(user=user).values_list("room", flat=True)
     friend_list = user.friends.all()
     context = {
         "user": user,
@@ -66,6 +66,8 @@ def profile(request):
 @login_required(login_url="login")
 def settings(request):
     form = ProfileForm(instance=request.user.profile)
+    categories = Category.objects.all()
+    room_count = Room.objects.all().count()
 
     if request.method == "POST":
         form = ProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -77,7 +79,7 @@ def settings(request):
             profile.save()
             return redirect("profile")
 
-    context = {"form": form}
+    context = {"form": form, "categories": categories, "room_count": room_count}
     return render(request, "user/settings.html", context)
 
 
@@ -86,7 +88,13 @@ def people(request):
     page = "USERS"
     categories = Category.objects.all()
     users = search_users(request)
-    context = {"categories": categories, "users": users, "page": page}
+    room_count = Room.objects.all().count()
+    context = {
+        "categories": categories,
+        "users": users,
+        "page": page,
+        "room_count": room_count,
+    }
     return render(request, "user/people.html", context)
 
 
@@ -101,7 +109,9 @@ def user_profile(request, username):
         return redirect("profile")
 
     rooms = Room.objects.select_related("owner").filter(owner=user)
-    favourites = request.user.profile.favourites.all()
+    favourites = Favourites.objects.filter(user=request.user.profile).values_list(
+        "room", flat=True
+    )
     friends = request.user.profile.friends.all()
     friend_list = user.friends.all()
     context = {
