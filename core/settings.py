@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # apps
     "account.apps.AccountConfig",
     "room.apps.RoomConfig",
+    "chat.apps.ChatConfig",
 ]
 
 MIDDLEWARE = [
