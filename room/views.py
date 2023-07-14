@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, JsonResponse
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
-from .models import Room, Category
+from .models import Room, Category, Favourites
 from .utils import search_filter
 from .forms import RoomForm
 
@@ -13,9 +13,17 @@ from .forms import RoomForm
 def home(request):
     rooms = Room.objects.all()
     categories = Category.objects.all()
-    favourites = request.user.profile.favourites.all()
+    favourites = Favourites.objects.filter(user=request.user.profile).values_list(
+        "room", flat=True
+    )
+    room_count = rooms.count()
 
-    context = {"categories": categories, "rooms": rooms, "favourites": favourites}
+    context = {
+        "categories": categories,
+        "rooms": rooms,
+        "favourites": favourites,
+        "room_count": room_count,
+    }
     return render(request, "room/home.html", context)
 
 
@@ -24,13 +32,15 @@ def search_rooms(request):
     rooms = search_filter(request)
     query = request.GET.get("q")
     categories = Category.objects.all()
-    favourites = request.user.profile.favourites.all()
+    favourites = Favourites.objects.filter(user=request.user.profile)
+    room_count = Room.objects.all().count()
 
     context = {
         "categories": categories,
         "rooms": rooms,
         "query": query,
         "favourites": favourites,
+        "room_count": room_count,
     }
     return render(request, "room/search.html", context)
 
@@ -112,19 +122,24 @@ def delete_room(request):
 def favourites(request):
     user = request.user.profile
     categories = Category.objects.all()
-    rooms = user.favourites.all()
+    rooms = Favourites.objects.filter(user=user)
+    room_count = Room.objects.all().count()
 
     if request.method == "POST":
         room = Room.objects.filter(id=int(request.POST.get("id"))).first()
         if room is not None:
-            if room not in user.favourites.all():
-                user.favourites.add(room.id)
-                user.save()
+            filtered_room = Favourites.objects.filter(
+                user=request.user.profile, room=room
+            ).first()
+            fav = Favourites()
+            if filtered_room is None:
+                fav.user = user
+                fav.room = room
+                fav.save()
                 return JsonResponse({"success": True})
             else:
-                user.favourites.remove(room.id)
-                user.save()
+                filtered_room.delete()
                 return JsonResponse({"success": False})
 
-    context = {"categories": categories, "rooms": rooms}
+    context = {"categories": categories, "rooms": rooms, "room_count": room_count}
     return render(request, "room/favourite.html", context)
